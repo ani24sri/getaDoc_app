@@ -8,6 +8,10 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-       
+        <StackPanel Background="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Text="Choose your Login"></TextBlock>
+            <Button x:Name="Doc" Click="Doc_Click" Content="Doctors" ></Button>
+            <Button x:Name="Pat" Click="Pat_Click" Content="Patients" ></Button>
+        </StackPanel>
     </Grid>
 </Page>
