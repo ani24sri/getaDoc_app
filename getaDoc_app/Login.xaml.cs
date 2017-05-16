@@ -34,5 +34,9 @@ namespace getaDoc_app
         {
             ErrorMessage.Text = "";
         }
+        private void AppBarButton_Click(object sender,RoutedEventArgs e)
+        {
+
+        }
     }
 }
