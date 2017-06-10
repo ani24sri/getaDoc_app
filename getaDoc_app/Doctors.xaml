@@ -1,0 +1,17 @@
+﻿<Page
+    x:Class="getaDoc_app.Doctors"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:getaDoc_app"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Button x:Name="viewAppoint" Content="Check Appointments" Click="appoint_Click" Margin="518,79,0,531" FontSize="24" Height="110" Width="308" />
+        <Button x:Name="patientConn" Content="Connect with patients" Click="patientConn_Click" Margin="516,275,0,341" FontSize="24" Height="104" Width="310"/>
+        <CommandBar VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <AppBarButton Icon="Cancel" Label="Back" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Grid>
+</Page>

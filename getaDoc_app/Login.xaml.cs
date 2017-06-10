@@ -28,15 +28,28 @@ namespace getaDoc_app
         }
         private void PassportSignInButton_Click(object sender, RoutedEventArgs e)
         {
-            ErrorMessage.Text = "";
+           if (UsernameTextBox.Text == "user@doctors.com" && PasswordTextBox.Password  == "doc123")
+                {
+                    this.Frame.Navigate(typeof(Doctors));
+                }
+           else  if (UsernameTextBox.Text == "user@patients.com" && PasswordTextBox.Password == "pat123")
+            {
+                this.Frame.Navigate(typeof(Patients));
+            }
+            else
+                {
+                    ErrorMessage.Text = "Invalid";
+                }
+
+           
         }
         private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ErrorMessage.Text = "";
+            this.Frame.Navigate(typeof(Register));
         }
         private void AppBarButton_Click(object sender,RoutedEventArgs e)
         {
-
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }

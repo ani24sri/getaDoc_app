@@ -1,0 +1,63 @@
+﻿<Page
+    x:Class="getaDoc_app.viewAppointments"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:getaDoc_app"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Name="viewList">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="134"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0" Margin="10,24,-10,10">
+                <TextBlock FontSize="25" FontWeight="Bold" HorizontalAlignment="Center">View your Appointments</TextBlock>
+                <TextBlock HorizontalAlignment="Center">Here is a list of patients waiting for yoiur approval</TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <ListView Name="listView" SelectionChanged="listView_SelectionChanged">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Height="40" Padding="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="300"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="200"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding appdate}" Grid.Column="0"></TextBlock>
+                                <TextBlock Text="{Binding reason}" Grid.Column="1"></TextBlock>
+                                <TextBlock Text="{Binding availble}" Grid.Column="2"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+        <Grid Name="viewSingle" Visibility="Collapsed">
+            <StackPanel Grid.Row="0" Margin="10">
+                <TextBlock Name="appDate" FontWeight="Bold"></TextBlock>
+                <TextBlock Name="reason"></TextBlock>
+                <TextBlock Name="availble" FontStyle="Italic"></TextBlock>
+                <Button Click="Button_Click">View List</Button>
+            </StackPanel>
+            <StackPanel Margin="136,144,568,341">
+                <TextBlock FontSize="23" FontWeight="Bold">Update Appointment Status</TextBlock>
+                <TextBlock Margin="0,20,0,0">Confirm the appointment of the patient</TextBlock>
+                <Button Margin="0,20,0,0" Click="Button_Click">Update</Button>
+            </StackPanel>
+            <StackPanel Margin="136,384,393,102">
+                <TextBlock FontSize="23" FontWeight="Bold">Reject Appointment</TextBlock>
+                <TextBlock Margin="0,30,0,0">Else reject the aappointment</TextBlock>
+                <Button Margin="0,30,0,0" Click="Button_Click">Delete</Button>
+            </StackPanel>
+        </Grid>
+
+
+        <CommandBar VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <AppBarButton Icon="Back" Label="Back" Click="AppBarButton_Click"/>
+        </CommandBar>
+    </Grid>
+</Page>

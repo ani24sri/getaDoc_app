@@ -1,8 +1,12 @@
-﻿using System;
+﻿using getaDoc_app.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -22,6 +26,13 @@ namespace getaDoc_app
     /// </summary>
     sealed partial class App : Application
     {
+        public static Uri baseUri = new Uri("http://localhost:59318/api/appointments");
+        public static Uri baseUri2 = new Uri("http://localhost:59318/api/diseases");
+        public static Uri baseUri3 = new Uri("http://localhost:59318/api/patients");
+        public static Frame RootFrame { get; set; }
+        public static Appointments _appoint { get; set; }
+        public static diseaseData _disease { get; set; }
+        public static PatientsModel _patients { get; set; }
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -30,6 +41,26 @@ namespace getaDoc_app
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            using (var client = new HttpClient())
+            {
+                var response = "";
+                Task task = Task.Run(async () =>
+                {
+                    response = await client.GetStringAsync(App.baseUri);
+                });
+                try
+                {
+                    task.Wait(); // Wait 
+                    App._appoint = JsonConvert.DeserializeObject<List<Appointments>>(response)[0];
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+
+                
+            }
+
         }
 
         /// <summary>
