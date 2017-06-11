@@ -10,8 +10,10 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <StackPanel Name="panel" Margin="10">
             <TextBlock Name="message"></TextBlock>
-            <Button Click="Button_Click">Yes</Button>
-            <Button Click="Button_Click" Margin="70,-33,0,0">Cancel</Button>
+            <Button x:Name="Action" Click="Button_Click" Margin="70,33,0,0">Cancel</Button>
         </StackPanel>
+        <CommandBar VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <AppBarButton Icon="Back" Label="Back" Click="AppBarButton_Click"/>
+        </CommandBar>
     </Grid>
 </Page>

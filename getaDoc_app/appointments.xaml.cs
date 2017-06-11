@@ -33,6 +33,9 @@ namespace getaDoc_app
                 case "Create":
                     this.Frame.Navigate(typeof(bookAppoint));
                     break;
+                case "Cancel":
+                    this.Frame.Navigate(typeof(removeAppointment),"Cancel2");
+                    break;
                 default:
                     break;
             }

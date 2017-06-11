@@ -22,7 +22,12 @@
                 <TextBlock FontSize="23" FontWeight="Bold">Book an Appointment</TextBlock>
                 <TextBlock Margin="0,10,0,0">Simply tap create to book an appointment</TextBlock>
                 <Button Margin="0,10,0,0" Click="Button_Click">Create</Button>
-                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Margin="10,109,10,10">
+                <TextBlock FontSize="23" FontWeight="Bold">Cancel Appointment Status</TextBlock>
+                <TextBlock Margin="0,10,0,0">Simply tap  to cancel your appointment</TextBlock>
+                <Button Margin="0,10,0,0" Click="Button_Click">Cancel</Button>
+            </StackPanel>
         </Grid>
         <CommandBar VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <AppBarButton Icon="Back" Label="Back" Click="AppBarButton_Click"/>

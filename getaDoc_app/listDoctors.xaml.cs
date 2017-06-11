@@ -2,14 +2,14 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Calls;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -18,13 +18,13 @@ namespace getaDoc_app
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class listPatients : Page
+    public sealed partial class listDoctors : Page
     {
         public ObservableCollection<PatientsModel> Values { get; private set; }
-        public listPatients()
+        public listDoctors()
         {
-            this.InitializeComponent();
             this.Values = new ObservableCollection<PatientsModel>();
+            this.InitializeComponent();
         }
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace getaDoc_app
                 try
                 {
                     task.Wait(); // Wait 
-                    var data= JsonConvert.DeserializeObject<List<PatientsModel>>(response);
+                    var data = JsonConvert.DeserializeObject<List<PatientsModel>>(response);
                     App._patients = JsonConvert.DeserializeObject<List<PatientsModel>>(response)[0];
                     foreach (var item in data)
                     {
@@ -52,16 +52,15 @@ namespace getaDoc_app
                     await obj.ShowAsync();
                 }
             }
-        }
+           
 
+        }
         private void listView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = ((sender as ListView).SelectedItem as PatientsModel);
             App._patients = item;
             name.Text = item.name.ToString();
-            symptoms.Text = item.symptoms.ToString();
-            phNo.Text = item.phNo.ToString();
-            patientNo.Text = string.Join(", ", item.patientNo);
+            phNo.Text = "Dr." +item.phNo.ToString();
 
             // Change the UI 
             viewList.Visibility = Visibility.Collapsed;
@@ -75,12 +74,12 @@ namespace getaDoc_app
             }
             this.listView.ItemsSource = this.Values.Where((item) => { return item.name.Contains(txtSearch.Text); });
         }
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
+    
+    private async void Button_Click(object sender, RoutedEventArgs e)
         {
             switch ((sender as Button).Content.ToString())
             {
-                case "Contact Patient":
+                case "Contact Doctor":
                     PhoneCallStore PhoneCallStore = await PhoneCallManager.RequestStoreAsync();
                     Guid LineGuid = await PhoneCallStore.GetDefaultLineAsync();
                     var phoneCall = await PhoneLine.FromIdAsync(LineGuid);
@@ -97,7 +96,7 @@ namespace getaDoc_app
 
         private void AppBarButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Doctors));
+            this.Frame.Navigate(typeof(Patients));
         }
     }
 }

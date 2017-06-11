@@ -107,6 +107,9 @@
     <Compile Include="Doctors.xaml.cs">
       <DependentUpon>Doctors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="listDoctors.xaml.cs">
+      <DependentUpon>listDoctors.xaml</DependentUpon>
+    </Compile>
     <Compile Include="listPatients.xaml.cs">
       <DependentUpon>listPatients.xaml</DependentUpon>
     </Compile>
@@ -117,6 +120,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DataModels.cs" />
+    <Compile Include="Models\SearchProvider.cs" />
     <Compile Include="Patients.xaml.cs">
       <DependentUpon>Patients.xaml</DependentUpon>
     </Compile>
@@ -182,6 +186,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Doctors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="listDoctors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

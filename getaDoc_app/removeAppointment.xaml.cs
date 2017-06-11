@@ -30,14 +30,23 @@ namespace getaDoc_app
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            message.Text = string.Format("Are you sure you want to delete {0}?", App._appoint.appDate);
+            if (e.Parameter == null)
+            {
+                Action.Content = "Cancel";
+                message.Text = string.Format("Are you sure you want to delete the appointment made at {0}?", App._appoint.appDate); 
+            }
+            else
+            {
+                message.Text = string.Format("Are you sure you want to delete the appointment made at {0}?", App._appoint.appDate);
+                Action.Content = e.Parameter.ToString(); 
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             switch ((sender as Button).Content.ToString())
             {
-                case "Yes":
+                case "Cancel":
                     // Send a request to delete the user 
                     using (var client = new HttpClient())
                     {
@@ -49,12 +58,30 @@ namespace getaDoc_app
                     }
                     this.Frame.Navigate(typeof(Doctors));
                     break;
-                case "Cancel":
-                    this.Frame.Navigate(typeof(Doctors));
+                case "Cancel2":
+                    // Send a request to delete the user 
+                    using (var client = new HttpClient())
+                    {
+                        Task task = Task.Run(async () =>
+                        {
+                            await client.DeleteAsync(App.baseUri + "/" + App._appoint.id.ToString());
+                        });
+                        task.Wait();
+                    }
+                    this.Frame.Navigate(typeof(Patients));
                     break;
                 default:
                     break;
             }
+        }
+
+        private void AppBarButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(Action.Content.ToString() == "Cancel")
+            {
+                this.Frame.Navigate(typeof(Doctors));
+            }
+            this.Frame.Navigate(typeof(Patients));
         }
     }
 

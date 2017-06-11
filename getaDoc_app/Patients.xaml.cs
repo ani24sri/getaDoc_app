@@ -41,5 +41,10 @@ namespace getaDoc_app
         {
             this.Frame.Navigate(typeof(Disease));
         }
+
+        private void doctorList_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(listDoctors));
+        }
     }
 }

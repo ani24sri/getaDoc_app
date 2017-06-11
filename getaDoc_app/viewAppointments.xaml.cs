@@ -69,7 +69,7 @@ namespace getaDoc_app
                     this.Frame.Navigate(typeof(bookAppoint), false);
                     break;
                 case "Delete":
-                    this.Frame.Navigate(typeof(removeAppointment));
+                    this.Frame.Navigate(typeof(removeAppointment), null);
                     break;
                 default:
                     break;
